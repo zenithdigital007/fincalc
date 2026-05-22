@@ -9,8 +9,6 @@ import { Footer } from '@/components/layout/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const ADSENSE_PUB_ID = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID
-
 export const metadata: Metadata = {
   title: 'FinCalc — Smart Financial & Utility Calculators',
   description: 'Free suite of financial and utility calculators: loans, SIP, FD, BMI, scientific, graphing and more — with live news.',
@@ -24,16 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google AdSense — only injected when publisher ID is configured */}
-        {ADSENSE_PUB_ID && (
-          <Script
-            id="google-adsense"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_PUB_ID}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
+        {/* Google AdSense — loads unconditionally for site verification and ad serving */}
+        <Script
+          id="google-adsense"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4543066948758573"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <ThemeProvider
