@@ -220,12 +220,15 @@ export async function GET(request: NextRequest) {
     return getFallback(topic)
   }
 
+  // Shorten query to top 3 keywords for better API yield
+  const shortQuery = topic.split(" ").slice(0, 3).join(" ")
+
   try {
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 5000) // 5-second timeout
+    const timeout = setTimeout(() => controller.abort(), 5000) // 5s timeout
 
     const response = await fetch(
-      `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(topic)}&language=en&size=8`,
+      `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(shortQuery)}&language=en&size=8`,
       { signal: controller.signal }
     )
     clearTimeout(timeout)
@@ -241,7 +244,7 @@ export async function GET(request: NextRequest) {
       return getFallback(topic)
     }
 
-    const articles: NewsArticle[] = data.results.map((a: NewsDataArticle) => ({
+    const liveArticles: NewsArticle[] = data.results.map((a: NewsDataArticle) => ({
       title: a.title,
       description: a.description || a.content?.slice(0, 180) || "",
       url: a.link,
@@ -250,9 +253,16 @@ export async function GET(request: NextRequest) {
       publishedAt: a.pubDate,
     }))
 
+    // If API returns fewer than 4 articles, pad with fallback to always show a full grid
+    const key = getTopicKey(topic)
+    const fallbackArticles = FALLBACK_NEWS[key] ?? FALLBACK_NEWS.finance
+    const combined = liveArticles.length >= 4
+      ? liveArticles.slice(0, 8)
+      : [...liveArticles, ...fallbackArticles].slice(0, 8)
+
     return NextResponse.json(
-      { articles, source: "newsdata" },
-      { headers: { "Cache-Control": "public, max-age=3600" } }
+      { articles: combined, source: liveArticles.length > 0 ? "newsdata" : "fallback" },
+      { headers: { "Cache-Control": "public, max-age=1800" } }
     )
   } catch {
     return getFallback(topic)
