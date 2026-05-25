@@ -6,6 +6,7 @@ import { CurrencyProvider } from '@/components/providers/currency-provider'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -139,6 +140,7 @@ export default function RootLayout({
             <Footer />
           </CurrencyProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
