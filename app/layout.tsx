@@ -74,6 +74,14 @@ export const metadata: Metadata = {
     google: 'Zb8EP1S1YTgPgfSXRdl6HLAF887MB5zfWo2E0l4Z5S0',
   },
   category: 'finance',
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
 }
 
 const websiteSchema = {

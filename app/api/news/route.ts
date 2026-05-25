@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 
-export const revalidate = 3600 // Cache for 1 hour
+export const dynamic = 'force-dynamic'
 
 // NewsData.io article shape
 interface NewsDataArticle {
@@ -23,7 +23,74 @@ interface NewsArticle {
   publishedAt: string
 }
 
+// ── Fallback articles shown when API key is missing or API fails ──────────────
 const FALLBACK_NEWS: Record<string, NewsArticle[]> = {
+  finance: [
+    {
+      title: "RBI Keeps Repo Rate Unchanged: What It Means for Borrowers",
+      description: "The Reserve Bank of India held the repo rate steady. Here's how it affects your home loan and personal loan EMIs.",
+      url: "https://www.rbi.org.in",
+      image: null,
+      source: "Reserve Bank of India",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "How to Reduce Your Home Loan EMI: 5 Proven Strategies",
+      description: "From prepayments to balance transfers, discover practical ways to cut down your monthly mortgage burden.",
+      url: "https://www.bankbazaar.com/home-loan.html",
+      image: null,
+      source: "BankBazaar",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "Best Personal Loan Interest Rates in India 2025",
+      description: "Compare personal loan rates across top Indian banks and NBFCs to find the most affordable option.",
+      url: "https://www.paisabazaar.com/personal-loan",
+      image: null,
+      source: "PaisaBazaar",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "SIP vs Lump Sum: Which Investment Strategy Suits You?",
+      description: "Mutual fund experts explain when to choose SIP over lump sum investing based on your financial goals.",
+      url: "https://www.amfiindia.com",
+      image: null,
+      source: "AMFI India",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "Fixed Deposit Rates: Which Banks Offer the Best Returns in 2025?",
+      description: "A comprehensive comparison of FD interest rates from SBI, HDFC, ICICI, Axis, and small finance banks.",
+      url: "https://www.bankbazaar.com/fixed-deposit.html",
+      image: null,
+      source: "BankBazaar",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "Car Loan vs Personal Loan: Which is Better for Buying a Vehicle?",
+      description: "Understand the key differences in rates, tenure, and tax benefits before choosing your vehicle finance option.",
+      url: "https://www.moneycontrol.com",
+      image: null,
+      source: "Moneycontrol",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "How Your CIBIL Score Affects Your Loan Eligibility and Interest Rate",
+      description: "A high credit score can save you lakhs on your home or personal loan. Here's how to improve yours.",
+      url: "https://www.cibil.com",
+      image: null,
+      source: "CIBIL",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "Understanding Loan Amortization: How Banks Calculate Your EMI",
+      description: "A deep dive into how banks use reducing balance method to compute your monthly installment and interest.",
+      url: "https://www.investopedia.com/terms/a/amortization.asp",
+      image: null,
+      source: "Investopedia",
+      publishedAt: new Date().toISOString(),
+    },
+  ],
   bmi: [
     {
       title: "Understanding BMI: What Your Body Mass Index Really Means",
@@ -58,40 +125,6 @@ const FALLBACK_NEWS: Record<string, NewsArticle[]> = {
       publishedAt: new Date().toISOString(),
     },
   ],
-  calculator: [
-    {
-      title: "The History of the Calculator: From Abacus to Smartphone",
-      description: "A journey through 5,000 years of calculating devices and how they shaped mathematics.",
-      url: "https://en.wikipedia.org/wiki/Calculator",
-      image: null,
-      source: "Wikipedia",
-      publishedAt: new Date().toISOString(),
-    },
-    {
-      title: "Mental Math vs Calculators: What Education Research Says",
-      description: "Exploring the balance between mental calculation skills and reliance on digital tools.",
-      url: "https://www.khanacademy.org/math",
-      image: null,
-      source: "Khan Academy",
-      publishedAt: new Date().toISOString(),
-    },
-    {
-      title: "Best Calculator Apps of 2025 for Students and Professionals",
-      description: "Top-rated calculator applications reviewed for accuracy, features, and ease of use.",
-      url: "https://www.pcmag.com/picks/best-calculator-apps",
-      image: null,
-      source: "PC Magazine",
-      publishedAt: new Date().toISOString(),
-    },
-    {
-      title: "How Calculators Changed Mathematics Education Forever",
-      description: "The debate over calculator use in classrooms and its long-term impact on math proficiency.",
-      url: "https://www.edweek.org/teaching-learning/calculators-in-math-education",
-      image: null,
-      source: "Education Week",
-      publishedAt: new Date().toISOString(),
-    },
-  ],
   science: [
     {
       title: "Top Scientific Discoveries of 2025",
@@ -99,14 +132,6 @@ const FALLBACK_NEWS: Record<string, NewsArticle[]> = {
       url: "https://www.sciencenews.org",
       image: null,
       source: "Science News",
-      publishedAt: new Date().toISOString(),
-    },
-    {
-      title: "Using Scientific Calculators in Advanced Physics",
-      description: "How modern scientific calculators power research in astrophysics and particle physics.",
-      url: "https://www.physicsclassroom.com",
-      image: null,
-      source: "The Physics Classroom",
       publishedAt: new Date().toISOString(),
     },
     {
@@ -123,6 +148,14 @@ const FALLBACK_NEWS: Record<string, NewsArticle[]> = {
       url: "https://www.mathsisfun.com/algebra/logarithms.html",
       image: null,
       source: "Math Is Fun",
+      publishedAt: new Date().toISOString(),
+    },
+    {
+      title: "Using Scientific Calculators in Advanced Physics",
+      description: "How modern scientific calculators power research in astrophysics and particle physics.",
+      url: "https://www.physicsclassroom.com",
+      image: null,
+      source: "The Physics Classroom",
       publishedAt: new Date().toISOString(),
     },
   ],
@@ -164,19 +197,18 @@ const FALLBACK_NEWS: Record<string, NewsArticle[]> = {
 
 function getTopicKey(topic: string): string {
   const lower = topic.toLowerCase()
-  // Finance & loans
-  if (lower.includes("home loan") || lower.includes("mortgage") || lower.includes("housing")) return "calculator"
-  if (lower.includes("car loan") || lower.includes("auto") || lower.includes("automobile"))   return "calculator"
-  if (lower.includes("personal loan") || lower.includes("credit"))                            return "calculator"
-  if (lower.includes("sip") || lower.includes("mutual fund") || lower.includes("invest"))     return "calculator"
-  if (lower.includes("fixed deposit") || lower.includes("rbi") || lower.includes("bank"))     return "calculator"
-  // Health
-  if (lower.includes("bmi") || lower.includes("health") || lower.includes("weight"))          return "bmi"
-  // Science / math
-  if (lower.includes("scien") || lower.includes("trigon") || lower.includes("log"))           return "science"
-  // Graphing
-  if (lower.includes("graph") || lower.includes("visual") || lower.includes("plot"))          return "graph"
-  return "calculator"
+  if (lower.includes("bmi") || lower.includes("health") || lower.includes("weight")) return "bmi"
+  if (lower.includes("scien") || lower.includes("trigon") || lower.includes("log"))   return "science"
+  if (lower.includes("graph") || lower.includes("visual") || lower.includes("plot"))  return "graph"
+  return "finance"
+}
+
+function getFallback(topic: string) {
+  const key = getTopicKey(topic)
+  return NextResponse.json(
+    { articles: FALLBACK_NEWS[key] ?? FALLBACK_NEWS.finance, source: "fallback" },
+    { headers: { "Cache-Control": "public, max-age=3600" } }
+  )
 }
 
 export async function GET(request: NextRequest) {
@@ -184,31 +216,32 @@ export async function GET(request: NextRequest) {
   const topic = searchParams.get("topic") || "finance"
 
   const apiKey = process.env.NEWSDATA_API_KEY
-
-  if (!apiKey || apiKey === "your_api_key_here") {
-    const key = getTopicKey(topic)
-    return NextResponse.json({ articles: FALLBACK_NEWS[key] || FALLBACK_NEWS.calculator, source: "fallback" })
+  if (!apiKey || apiKey.trim() === "" || apiKey === "your_api_key_here") {
+    return getFallback(topic)
   }
 
   try {
-    const query = encodeURIComponent(topic)
-    // size=8 to fill two rows of 4 cards
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 5000) // 5-second timeout
+
     const response = await fetch(
-      `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${query}&language=en&size=8`,
-      { next: { revalidate: 3600 } }
+      `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${encodeURIComponent(topic)}&language=en&size=8`,
+      { signal: controller.signal }
     )
+    clearTimeout(timeout)
 
     if (!response.ok) {
-      throw new Error(`NewsData.io API error: ${response.status}`)
+      console.error(`NewsData.io error: ${response.status}`)
+      return getFallback(topic)
     }
 
     const data = await response.json()
 
-    if (data.status !== "success") {
-      throw new Error(`NewsData.io returned status: ${data.status}`)
+    if (data.status !== "success" || !Array.isArray(data.results)) {
+      return getFallback(topic)
     }
 
-    const articles: NewsArticle[] = (data.results || []).map((a: NewsDataArticle) => ({
+    const articles: NewsArticle[] = data.results.map((a: NewsDataArticle) => ({
       title: a.title,
       description: a.description || a.content?.slice(0, 180) || "",
       url: a.link,
@@ -217,9 +250,11 @@ export async function GET(request: NextRequest) {
       publishedAt: a.pubDate,
     }))
 
-    return NextResponse.json({ articles, source: "newsdata" })
+    return NextResponse.json(
+      { articles, source: "newsdata" },
+      { headers: { "Cache-Control": "public, max-age=3600" } }
+    )
   } catch {
-    const key = getTopicKey(topic)
-    return NextResponse.json({ articles: FALLBACK_NEWS[key] || FALLBACK_NEWS.calculator, source: "fallback" })
+    return getFallback(topic)
   }
 }
