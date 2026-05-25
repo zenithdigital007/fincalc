@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   try {
     const postData = await getPostData(slug)
     return {
-      title: `${postData.title} | FinCalc`,
+      title: `${postData.title} | Loan Calculator`,
       description: postData.description,
     }
   } catch (e) {

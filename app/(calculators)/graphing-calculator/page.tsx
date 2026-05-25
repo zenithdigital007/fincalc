@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Graphing Calculator Online — FinCalc",
+    title: "Graphing Calculator Online — Loan Calculator",
     description: "Free online graphing calculator. Plot sin(x), cos(x), x², and more interactively.",
     images: [`${SITE_URL}/og-image.png`],
   },

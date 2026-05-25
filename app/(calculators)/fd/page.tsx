@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FD Calculator — FinCalc",
+    title: "FD Calculator — Loan Calculator",
     description: "Calculate your Fixed Deposit maturity amount and interest earned. Free FD calculator.",
     images: [`${SITE_URL}/og-image.png`],
   },

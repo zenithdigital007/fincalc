@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SIP Calculator — FinCalc",
+    title: "SIP Calculator — Loan Calculator",
     description: "Calculate your SIP returns and see how your mutual fund investments grow. Free SIP calculator.",
     images: [`${SITE_URL}/og-image.png`],
   },

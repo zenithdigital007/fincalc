@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Online Calculator — FinCalc",
+    title: "Free Online Calculator — Loan Calculator",
     description: "Fast, free online calculator with keyboard support and history. Do arithmetic instantly.",
     images: [`${SITE_URL}/og-image.png`],
   },

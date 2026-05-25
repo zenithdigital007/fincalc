@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scientific Calculator Online — FinCalc",
+    title: "Scientific Calculator Online — Loan Calculator",
     description: "Free advanced scientific calculator with trig, log, constants, and memory functions.",
     images: [`${SITE_URL}/og-image.png`],
   },

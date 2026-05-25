@@ -15,8 +15,8 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'FinCalc — Free Financial & Utility Calculators Online',
-    template: '%s | FinCalc',
+    default: 'Loan Calculator — Free Financial & Utility Calculators Online',
+    template: '%s | Loan Calculator',
   },
   description:
     'Free suite of financial and utility calculators: home loan EMI, car loan, personal loan, SIP returns, fixed deposit, BMI, scientific, graphing — with live news. Free forever.',
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     'BMI calculator', 'scientific calculator', 'graphing calculator', 'financial calculator',
     'free calculator online', 'India loan EMI', 'mutual fund SIP returns',
   ],
-  authors: [{ name: 'FinCalc' }],
-  creator: 'FinCalc',
-  publisher: 'FinCalc',
+  authors: [{ name: 'Loan Calculator' }],
+  creator: 'Loan Calculator',
+  publisher: 'Loan Calculator',
   robots: {
     index: true,
     follow: true,
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: SITE_URL,
-    siteName: 'FinCalc',
-    title: 'FinCalc — Free Financial & Utility Calculators Online',
+    siteName: 'Loan Calculator',
+    title: 'Loan Calculator — Free Financial & Utility Calculators Online',
     description:
       'Free suite of financial calculators: home loan EMI, SIP, FD, BMI, scientific, graphing and more — with live financial news.',
     images: [
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
         url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'FinCalc — Smart Financial & Utility Calculators',
+        alt: 'Loan Calculator — Smart Financial & Utility Calculators',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FinCalc — Free Financial & Utility Calculators Online',
+    title: 'Loan Calculator — Free Financial & Utility Calculators Online',
     description:
       'Free loan EMI, SIP, FD, BMI, scientific & graphing calculators with live news. Free forever.',
     images: [`${SITE_URL}/og-image.png`],
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'FinCalc',
+  name: 'Loan Calculator',
   url: SITE_URL,
   description:
     'Free suite of financial and utility calculators including loan EMI, SIP, FD, BMI, scientific and graphing calculators.',
@@ -96,7 +96,7 @@ const websiteSchema = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'FinCalc',
+  name: 'Loan Calculator',
   url: SITE_URL,
   logo: {
     '@type': 'ImageObject',

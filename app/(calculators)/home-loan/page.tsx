@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home Loan EMI Calculator — FinCalc",
+    title: "Home Loan EMI Calculator — Loan Calculator",
     description: "Calculate your home loan EMI, total interest & amortization schedule instantly.",
     images: [`${SITE_URL}/og-image.png`],
   },

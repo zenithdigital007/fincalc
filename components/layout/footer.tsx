@@ -12,7 +12,7 @@ export function Footer() {
               <div className="w-7 h-7 bg-foreground rounded-lg flex items-center justify-center">
                 <BarChart3 className="w-4 h-4 text-background" />
               </div>
-              <span className="font-bold text-lg tracking-tight">FinCalc</span>
+              <span className="font-bold text-lg tracking-tight">Loan Calculator</span>
             </Link>
             <p className="text-xs text-muted-foreground max-w-[200px] text-center md:text-left">
               Free, fast, and privacy-first calculator suite.
@@ -37,7 +37,7 @@ export function Footer() {
         <div className="divider-gradient my-6" />
 
         <p className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} FinCalc · Built for smart financial decisions
+          © {new Date().getFullYear()} Loan Calculator · Built for smart financial decisions
         </p>
       </div>
     </footer>

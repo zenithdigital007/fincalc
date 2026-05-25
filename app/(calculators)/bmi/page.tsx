@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BMI Calculator — FinCalc",
+    title: "BMI Calculator — Loan Calculator",
     description: "Calculate your BMI instantly. Get weight category and ideal weight range. Free BMI calculator.",
     images: [`${SITE_URL}/og-image.png`],
   },

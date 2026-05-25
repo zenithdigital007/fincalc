@@ -3,7 +3,7 @@ import Link from "next/link"
 import { getSortedPostsData } from "@/lib/blog"
 
 export const metadata: Metadata = {
-  title: "Personal Finance Blog | FinCalc",
+  title: "Personal Finance Blog | Loan Calculator",
   description: "Read our latest articles on personal finance, loan management, and investments.",
 }
 

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Car Loan EMI Calculator — FinCalc",
+    title: "Car Loan EMI Calculator — Loan Calculator",
     description: "Calculate your car loan EMI, total interest & repayment schedule instantly.",
     images: [`${SITE_URL}/og-image.png`],
   },
