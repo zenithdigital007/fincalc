@@ -7,7 +7,7 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 const PAGE_URL = `${SITE_URL}/retirement-calculator`
 
 export const metadata: Metadata = {
-  title: "Retirement Calculator India — How Much Do You Need to Retire?",
+  title: "Retirement Calculator — How Much Do You Need to Retire?",
   description:
     "Plan your retirement with India's most comprehensive retirement calculator. Enter your age, savings, monthly contributions, and expected returns to see your projected corpus vs required corpus. Free retirement planner.",
   keywords: [

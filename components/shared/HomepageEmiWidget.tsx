@@ -3,20 +3,26 @@
 import { useState, useMemo } from "react"
 import { calculateEMI } from "@/lib/math"
 import { formatCurrency } from "@/lib/utils"
-
-function fmt(n: number) {
-  return formatCurrency(n, "INR")
-}
+import { useCurrency } from "@/components/providers/currency-provider"
 
 export function HomepageEmiWidget() {
-  const [principal, setPrincipal] = useState(2000000)
+  const [principal, setPrincipal] = useState(200000)
   const [rate, setRate] = useState(8.5)
   const [years, setYears] = useState(20)
+  const { currency } = useCurrency()
 
   const { emi, totalInterest, totalPayment } = useMemo(
     () => calculateEMI(principal, rate, years * 12),
     [principal, rate, years]
   )
+
+  const fmt = (n: number) => formatCurrency(n, currency)
+
+  const principalLabel = principal >= 1000000
+    ? `${fmt(principal / 1000000).replace(/\.00$/, '')}M`
+    : principal >= 1000
+    ? `${(principal / 1000).toFixed(0)}K`
+    : fmt(principal)
 
   return (
     <div className="w-full max-w-3xl mx-auto bg-card border border-border rounded-2xl shadow-sm p-6 text-left">
@@ -30,20 +36,20 @@ export function HomepageEmiWidget() {
           <div className="flex justify-between items-center">
             <label className="text-sm font-medium text-muted-foreground">Loan Amount</label>
             <span className="text-sm font-bold text-primary px-3 py-1 bg-primary/10 rounded-lg border border-primary/20">
-              ₹{(principal / 100000).toFixed(1)}L
+              {fmt(principal)}
             </span>
           </div>
           <input
             type="range"
-            min={100000}
-            max={10000000}
-            step={100000}
+            min={10000}
+            max={2000000}
+            step={10000}
             value={principal}
             onChange={(e) => setPrincipal(Number(e.target.value))}
             className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <div className="flex justify-between text-xs text-muted-foreground">
-            <span>₹1L</span><span>₹1Cr</span>
+            <span>{fmt(10000)}</span><span>{fmt(2000000)}</span>
           </div>
         </div>
 

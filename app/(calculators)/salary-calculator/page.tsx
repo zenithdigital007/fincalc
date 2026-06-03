@@ -7,7 +7,7 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 const PAGE_URL = `${SITE_URL}/salary-calculator`
 
 export const metadata: Metadata = {
-  title: "Salary Calculator India — CTC to In-Hand Salary Calculator Online Free",
+  title: "Salary Calculator — CTC to In-Hand Salary Calculator Online Free",
   description:
     "Convert CTC to in-hand salary instantly. See your basic, HRA, EPF, professional tax, and monthly take-home pay. Free Indian salary calculator for private sector employees.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Salary Calculator India — CTC to In-Hand Salary Calculator",
+    title: "Salary Calculator — CTC to In-Hand Salary Calculator",
     description: "Convert your CTC to in-hand salary. See basic, HRA, EPF deductions and monthly take-home instantly. Free salary calculator.",
     url: PAGE_URL, type: "website",
     images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Salary Calculator India" }],

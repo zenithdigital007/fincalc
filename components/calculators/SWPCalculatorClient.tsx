@@ -2,14 +2,17 @@
 import { useState, useMemo } from "react"
 import { calculateSWP } from "@/lib/math"
 import { SliderInput } from "@/components/shared/SliderInput"
+import { useCurrency } from "@/components/providers/currency-provider"
+import { formatCurrency } from "@/lib/utils"
 
 export function SWPCalculatorClient() {
-  const [corpus, setCorpus] = useState(5000000)
-  const [withdrawal, setWithdrawal] = useState(30000)
+  const [corpus, setCorpus] = useState(500000)
+  const [withdrawal, setWithdrawal] = useState(3000)
   const [returnRate, setReturnRate] = useState(8)
+  const { currency } = useCurrency()
+  const fmt = (n: number) => formatCurrency(n, currency)
 
   const result = useMemo(() => calculateSWP(corpus, withdrawal, returnRate), [corpus, withdrawal, returnRate])
-  const fmt = (n: number) => `₹${n.toLocaleString('en-IN')}`
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -17,18 +20,15 @@ export function SWPCalculatorClient() {
         <h2 className="text-2xl font-bold">SWP Calculator</h2>
         <p className="text-sm text-muted-foreground -mt-4">Systematic Withdrawal Plan — how long will your corpus last?</p>
         <SliderInput
-          label="Total Corpus (₹)"
+          label="Total Corpus"
           value={corpus}
-          min={100000}
-          max={50000000}
-          step={100000}
+          min={10000}
+          max={5000000}
+          step={10000}
           onChange={setCorpus}
-          formatValue={(v) => {
-            if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`
-            return `₹${(v / 100000).toFixed(1)}L`
-          }}
+          formatValue={fmt}
         />
-        <SliderInput label="Monthly Withdrawal (₹)" value={withdrawal} min={1000} max={500000} step={1000} onChange={setWithdrawal} formatValue={fmt} />
+        <SliderInput label="Monthly Withdrawal" value={withdrawal} min={100} max={50000} step={100} onChange={setWithdrawal} formatValue={fmt} />
         <SliderInput label="Expected Annual Return" value={returnRate} min={1} max={15} step={0.5} onChange={setReturnRate} formatValue={(v) => `${v}%`} />
       </div>
       <div className="space-y-6 bg-card text-card-foreground p-8 rounded-2xl border shadow-sm relative overflow-hidden">
@@ -38,7 +38,7 @@ export function SWPCalculatorClient() {
           <div className="flex justify-between items-center py-2 border-b">
             <span className="text-muted-foreground">Corpus Duration</span>
             <span className="font-bold text-xl text-primary">
-              {result.corpusExhausted ? `${result.durationYears} yrs` : '50+ yrs'}
+              {result.corpusExhausted ? `${result.durationYears} yr` : '50+ yr'}
             </span>
           </div>
           <div className="flex justify-between items-center py-2 border-b">

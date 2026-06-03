@@ -2,6 +2,8 @@
 import { useState, useMemo } from "react"
 import { calculateCompoundInterest } from "@/lib/math"
 import { SliderInput } from "@/components/shared/SliderInput"
+import { useCurrency } from "@/components/providers/currency-provider"
+import { formatCurrency } from "@/lib/utils"
 
 const FREQUENCIES = [
   { label: "Annually",     value: 1  },
@@ -11,21 +13,22 @@ const FREQUENCIES = [
 ]
 
 export function CompoundInterestCalculatorClient() {
-  const [principal, setPrincipal] = useState(100000)
+  const [principal, setPrincipal] = useState(10000)
   const [rate, setRate] = useState(10)
   const [years, setYears] = useState(5)
   const [frequency, setFrequency] = useState(4)
+  const { currency } = useCurrency()
 
   const result = useMemo(() => calculateCompoundInterest(principal, rate, years, frequency), [principal, rate, years, frequency])
-  const fmt = (n: number) => `₹${n.toLocaleString('en-IN')}`
+  const fmt = (n: number) => formatCurrency(n, currency)
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="lg:col-span-2 space-y-8 bg-card text-card-foreground p-8 rounded-2xl border shadow-sm">
         <h2 className="text-2xl font-bold">Compound Interest Calculator</h2>
-        <SliderInput label="Principal (₹)" value={principal} min={1000} max={10000000} step={1000} onChange={setPrincipal} formatValue={fmt} />
+        <SliderInput label="Principal Amount" value={principal} min={100} max={1000000} step={100} onChange={setPrincipal} formatValue={fmt} />
         <SliderInput label="Annual Interest Rate" value={rate} min={0.5} max={30} step={0.25} onChange={setRate} formatValue={(v) => `${v}%`} />
-        <SliderInput label="Time Period (Years)" value={years} min={1} max={30} step={1} onChange={setYears} formatValue={(v) => `${v} Yr`} />
+        <SliderInput label="Time Period (Years)" value={years} min={1} max={30} step={1} onChange={setYears} formatValue={(v) => `${v} yr`} />
         <div>
           <p className="text-sm font-medium text-muted-foreground mb-3">Compounding Frequency</p>
           <div className="flex gap-2 flex-wrap">

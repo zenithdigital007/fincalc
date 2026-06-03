@@ -64,8 +64,8 @@ export default function Home() {
 
           {/* SEO-focused H1 */}
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-[0.95]">
-            Free EMI, SIP, FD &amp; GST<br />
-            <span className="text-muted-foreground font-light italic">Calculators for India.</span>
+            Free EMI, SIP, FD &amp; Tax<br />
+            <span className="text-muted-foreground font-light italic">Calculators, Free Forever.</span>
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">

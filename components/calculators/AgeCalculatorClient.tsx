@@ -47,7 +47,7 @@ export function AgeCalculatorClient() {
           />
         </div>
         <div className="bg-muted/50 rounded-xl p-4 text-sm text-muted-foreground">
-          Today's date: <strong>{today.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</strong>
+          Today's date: <strong>{today.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</strong>
         </div>
       </div>
 

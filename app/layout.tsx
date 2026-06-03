@@ -15,20 +15,20 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Free EMI, SIP, FD, GST, Income Tax & 25+ Calculators Online — Loan Calculator',
+    default: 'Free EMI, SIP, FD, GST, Tax & 25+ Online Calculators — Loan Calculator',
     template: '%s | Loan Calculator',
   },
   description:
-    'Free online calculators for EMI, SIP, FD, GST, income tax, CAGR, PPF, NPS, gratuity, compound interest, BMI, age, percentage, discount, salary & more. India\'s most complete free calculator suite.',
+    'Free online calculators for EMI, SIP, FD, tax, CAGR, compound interest, BMI, age, percentage, discount, salary, retirement & more. A complete free calculator suite for financial, health & everyday use.',
   keywords: [
     'loan calculator', 'EMI calculator', 'home loan calculator', 'car loan calculator',
     'personal loan calculator', 'SIP calculator', 'FD calculator', 'fixed deposit calculator',
     'BMI calculator', 'scientific calculator', 'graphing calculator', 'financial calculator',
-    'free calculator online', 'India loan EMI', 'mutual fund SIP returns',
-    'GST calculator', 'income tax calculator India', 'CAGR calculator', 'PPF calculator',
-    'NPS calculator', 'gratuity calculator', 'compound interest calculator',
-    'percentage calculator', 'age calculator', 'salary calculator India',
-    'retirement calculator India', 'SWP calculator', 'lumpsum calculator',
+    'free calculator online', 'loan EMI calculator', 'mutual fund SIP returns',
+    'sales tax calculator', 'income tax calculator', 'CAGR calculator', 'PPF calculator',
+    'pension calculator', 'gratuity calculator', 'compound interest calculator',
+    'percentage calculator', 'age calculator', 'salary calculator',
+    'retirement calculator', 'SWP calculator', 'lumpsum calculator',
     'discount calculator', 'fuel cost calculator', 'date difference calculator',
   ],
   authors: [{ name: 'Loan Calculator' }],
@@ -50,12 +50,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_IN',
+    locale: 'en',
     url: SITE_URL,
     siteName: 'Loan Calculator',
-    title: 'Free EMI, SIP, FD, GST, Income Tax & 25+ Calculators Online — Loan Calculator',
+    title: 'Free EMI, SIP, FD, GST, Tax & 25+ Online Calculators — Loan Calculator',
     description:
-      'Free online calculators for EMI, SIP, FD, GST, income tax, CAGR, PPF, NPS, gratuity, compound interest, BMI, age, percentage, salary & more. India\'s most complete calculator suite.',
+      'Free calculators for EMI, SIP, FD, tax, CAGR, PPF, pension, gratuity, compound interest, BMI, age, percentage, salary, retirement & more. A complete free calculator suite.',
     images: [
       {
         url: `${SITE_URL}/og-image.png`,
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free EMI, SIP, FD, GST & 25+ Calculators — Loan Calculator',
+    title: 'Free EMI, SIP, FD, Tax & 25+ Calculators — Loan Calculator',
     description:
-      'Free calculators for EMI, SIP, FD, GST, income tax, CAGR, PPF, NPS, gratuity, BMI, age, salary & more. Free forever.',
+      'Free calculators for EMI, SIP, FD, tax, CAGR, compound interest, BMI, age, salary, retirement & more. Free forever.',
     images: [`${SITE_URL}/og-image.png`],
     creator: '@fincalc',
   },

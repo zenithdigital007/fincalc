@@ -7,7 +7,7 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 const PAGE_URL = `${SITE_URL}/gratuity-calculator`
 
 export const metadata: Metadata = {
-  title: "Gratuity Calculator India — Calculate Gratuity Amount Online Free",
+  title: "Gratuity Calculator — Calculate Gratuity Amount Online Free",
   description:
     "Calculate your gratuity payout using the official formula. Enter last drawn salary and years of service to get your gratuity amount. Covers eligibility rules and tax-free limits. Free gratuity calculator India.",
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Gratuity Calculator India — Calculate Gratuity Amount Free",
+    title: "Gratuity Calculator — Calculate Gratuity Amount Free",
     description: "Calculate your gratuity payout instantly. Enter last salary and years of service. Free gratuity calculator.",
     url: PAGE_URL, type: "website",
     images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Gratuity Calculator India" }],

@@ -152,9 +152,8 @@ export function calculateSimpleInterest(principal: number, annualRate: number, y
   }
 }
 
-export function calculatePPF(annualInvestment: number, years: number) {
-  // PPF: 7.1% p.a. compounded annually (current rate)
-  const rate = 7.1 / 100
+export function calculatePPF(annualInvestment: number, years: number, annualRatePct: number = 7.1) {
+  const rate = annualRatePct / 100
   if (annualInvestment <= 0 || years <= 0) {
     return { investedAmount: 0, interestEarned: 0, maturityValue: 0 }
   }
@@ -283,7 +282,7 @@ export function calculateLumpsum(
 }
 
 export function calculateSalary(ctc: number) {
-  // Approximate Indian salary breakdown from CTC
+  // Approximaten salary breakdown from CTC
   const basic = ctc * 0.40
   const hra = basic * 0.50
   const specialAllowance = ctc * 0.20

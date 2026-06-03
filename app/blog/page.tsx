@@ -4,13 +4,13 @@ import { getSortedPostsData } from "@/lib/blog"
 import { ArrowRight, BookOpen } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Personal Finance Blog — EMI, SIP, GST, Tax & Investment Guides India",
+  title: "Personal Finance Blog — EMI, SIP, GST, Tax & Investment Guides",
   description:
-    "Expert personal finance guides for India — learn about EMI, SIP vs FD, home loans, GST, income tax, BMI, retirement planning, and more. Free actionable advice.",
+    "Expert personal finance guides for — learn about EMI, SIP vs FD, home loans, GST, income tax, BMI, retirement planning, and more. Free actionable advice.",
   keywords: [
-    "personal finance India", "EMI guide", "SIP vs FD", "home loan guide",
-    "GST India explained", "income tax India guide", "BMI calculator guide",
-    "retirement planning India", "mutual fund beginner guide",
+    "personal finance", "EMI guide", "SIP vs FD", "home loan guide",
+    "GST explained", "income tax guide", "BMI calculator guide",
+    "retirement planning", "mutual fund beginner guide",
   ],
   alternates: { canonical: "https://loancalculator-nu.vercel.app/blog" },
 }
@@ -33,11 +33,11 @@ export default function BlogPage() {
       <div className="max-w-4xl mx-auto mb-10 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-border rounded-full text-xs font-medium text-muted-foreground mb-6 bg-muted/50">
           <BookOpen className="w-3 h-3" />
-          {allPostsData.length} articles · Personal Finance India
+          {allPostsData.length} articles · Personal Finance
         </div>
         <h1 className="text-4xl font-bold tracking-tight mb-4">Finance & Calculator Guides</h1>
         <p className="text-lg text-muted-foreground">
-          Practical guides on EMI, investments, taxes, health, and smart money decisions — written for Indian readers.
+          Practical guides on EMI, investments, taxes, health, and smart money decisions — written forn readers.
         </p>
       </div>
 

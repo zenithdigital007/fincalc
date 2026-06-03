@@ -1,13 +1,17 @@
 "use client"
 import { useState } from "react"
+import { useCurrency } from "@/components/providers/currency-provider"
+import { formatCurrency } from "@/lib/utils"
 
 export function FuelCostCalculatorClient() {
-  const [distance, setDistance] = useState(500)
-  const [mileage, setMileage] = useState(15)
-  const [fuelPrice, setFuelPrice] = useState(103)
+  const [distance, setDistance] = useState(300)
+  const [mileage, setMileage] = useState(12)
+  const [fuelPrice, setFuelPrice] = useState(1.5)
+  const { currency } = useCurrency()
 
   const fuelRequired = distance / mileage
   const totalCost = fuelRequired * fuelPrice
+  const fmt = (n: number) => formatCurrency(n, currency)
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -16,9 +20,9 @@ export function FuelCostCalculatorClient() {
         <p className="text-sm text-muted-foreground -mt-4">Estimate petrol/diesel cost for your trip</p>
 
         {[
-          { label: 'Trip Distance (km)', value: distance, set: setDistance, min: 1, max: 5000, step: 10, unit: 'km' },
+          { label: 'Trip Distance (km)', value: distance, set: setDistance, min: 1, max: 3000, step: 10, unit: 'km' },
           { label: 'Vehicle Mileage (km/L)', value: mileage, set: setMileage, min: 5, max: 60, step: 0.5, unit: 'km/L' },
-          { label: 'Fuel Price (₹/L)', value: fuelPrice, set: setFuelPrice, min: 50, max: 200, step: 0.5, unit: '₹/L' },
+          { label: 'Fuel Price (per litre)', value: fuelPrice, set: setFuelPrice, min: 0.1, max: 10, step: 0.1, unit: '/L' },
         ].map(({ label, value, set, min, max, step, unit }) => (
           <div key={label} className="space-y-2">
             <div className="flex justify-between items-center">
@@ -61,7 +65,7 @@ export function FuelCostCalculatorClient() {
           </div>
           <div className="flex justify-between items-center py-2 border-b">
             <span className="text-muted-foreground">Total Cost</span>
-            <span className="font-bold text-2xl text-primary">₹{Math.round(totalCost).toLocaleString('en-IN')}</span>
+            <span className="font-bold text-2xl text-primary">{fmt(totalCost)}</span>
           </div>
         </div>
       </div>

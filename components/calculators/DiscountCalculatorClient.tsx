@@ -1,15 +1,17 @@
 "use client"
 import { useState } from "react"
+import { useCurrency } from "@/components/providers/currency-provider"
+import { formatCurrency } from "@/lib/utils"
 
 export function DiscountCalculatorClient() {
-  const [originalPrice, setOriginalPrice] = useState(2999)
+  const [originalPrice, setOriginalPrice] = useState(100)
   const [discountPct, setDiscountPct] = useState(20)
+  const { currency } = useCurrency()
 
   const discountAmount = (originalPrice * discountPct) / 100
   const finalPrice = originalPrice - discountAmount
-  const savings = discountAmount
 
-  const fmt = (n: number) => `₹${Math.round(n).toLocaleString('en-IN')}`
+  const fmt = (n: number) => formatCurrency(n, currency)
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -17,7 +19,7 @@ export function DiscountCalculatorClient() {
         <h2 className="text-2xl font-bold">Discount Calculator</h2>
         <p className="text-sm text-muted-foreground -mt-4">Find out how much you save and what you actually pay</p>
         <div>
-          <label className="text-sm font-medium text-muted-foreground block mb-2">Original Price (₹)</label>
+          <label className="text-sm font-medium text-muted-foreground block mb-2">Original Price</label>
           <input
             type="number"
             value={originalPrice}
@@ -73,7 +75,7 @@ export function DiscountCalculatorClient() {
           </div>
           <div className="flex justify-between items-center py-2 border-b">
             <span className="text-muted-foreground">You Save</span>
-            <span className="font-bold text-lg text-green-500">{fmt(savings)}</span>
+            <span className="font-bold text-lg text-green-500">{fmt(discountAmount)}</span>
           </div>
           <div className="flex justify-between items-center py-2 border-b">
             <span className="text-muted-foreground font-semibold">Final Price</span>
