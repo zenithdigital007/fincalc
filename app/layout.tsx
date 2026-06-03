@@ -15,16 +15,21 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Loan Calculator — Free Financial & Utility Calculators Online',
+    default: 'Free EMI, SIP, FD, GST, Income Tax & 25+ Calculators Online — Loan Calculator',
     template: '%s | Loan Calculator',
   },
   description:
-    'Free suite of financial and utility calculators: home loan EMI, car loan, personal loan, SIP returns, fixed deposit, BMI, scientific, graphing — with live news. Free forever.',
+    'Free online calculators for EMI, SIP, FD, GST, income tax, CAGR, PPF, NPS, gratuity, compound interest, BMI, age, percentage, discount, salary & more. India\'s most complete free calculator suite.',
   keywords: [
     'loan calculator', 'EMI calculator', 'home loan calculator', 'car loan calculator',
     'personal loan calculator', 'SIP calculator', 'FD calculator', 'fixed deposit calculator',
     'BMI calculator', 'scientific calculator', 'graphing calculator', 'financial calculator',
     'free calculator online', 'India loan EMI', 'mutual fund SIP returns',
+    'GST calculator', 'income tax calculator India', 'CAGR calculator', 'PPF calculator',
+    'NPS calculator', 'gratuity calculator', 'compound interest calculator',
+    'percentage calculator', 'age calculator', 'salary calculator India',
+    'retirement calculator India', 'SWP calculator', 'lumpsum calculator',
+    'discount calculator', 'fuel cost calculator', 'date difference calculator',
   ],
   authors: [{ name: 'Loan Calculator' }],
   creator: 'Loan Calculator',
@@ -48,9 +53,9 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: SITE_URL,
     siteName: 'Loan Calculator',
-    title: 'Loan Calculator — Free Financial & Utility Calculators Online',
+    title: 'Free EMI, SIP, FD, GST, Income Tax & 25+ Calculators Online — Loan Calculator',
     description:
-      'Free suite of financial calculators: home loan EMI, SIP, FD, BMI, scientific, graphing and more — with live financial news.',
+      'Free online calculators for EMI, SIP, FD, GST, income tax, CAGR, PPF, NPS, gratuity, compound interest, BMI, age, percentage, salary & more. India\'s most complete calculator suite.',
     images: [
       {
         url: `${SITE_URL}/og-image.png`,
@@ -62,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Loan Calculator — Free Financial & Utility Calculators Online',
+    title: 'Free EMI, SIP, FD, GST & 25+ Calculators — Loan Calculator',
     description:
-      'Free loan EMI, SIP, FD, BMI, scientific & graphing calculators with live news. Free forever.',
+      'Free calculators for EMI, SIP, FD, GST, income tax, CAGR, PPF, NPS, gratuity, BMI, age, salary & more. Free forever.',
     images: [`${SITE_URL}/og-image.png`],
     creator: '@fincalc',
   },
