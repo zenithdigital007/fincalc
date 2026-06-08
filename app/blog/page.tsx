@@ -16,13 +16,16 @@ export const metadata: Metadata = {
 }
 
 const CALCULATOR_LINKS: Record<string, { href: string; label: string }> = {
-  "what-is-emi":                    { href: "/home-loan",          label: "Try EMI Calculator" },
-  "sip-vs-fd":                      { href: "/sip",                label: "Try SIP Calculator" },
-  "how-much-home-loan-can-i-afford":{ href: "/home-loan",          label: "Try Home Loan Calculator" },
-  "fd-vs-mutual-fund":              { href: "/fd",                 label: "Try FD Calculator" },
-  "bmi-calculator-guide":           { href: "/bmi",                label: "Try BMI Calculator" },
-  "what-is-gst-in-india":           { href: "/gst-calculator",     label: "Try GST Calculator" },
-  "understanding-home-loan-emi":    { href: "/home-loan",          label: "Try EMI Calculator" },
+  "what-is-emi":                           { href: "/home-loan",            label: "Try EMI Calculator" },
+  "sip-vs-fd":                             { href: "/sip",                  label: "Try SIP Calculator" },
+  "how-much-home-loan-can-i-afford":       { href: "/home-loan",            label: "Try Home Loan Calculator" },
+  "fd-vs-mutual-fund":                     { href: "/fd",                   label: "Try FD Calculator" },
+  "bmi-calculator-guide":                  { href: "/bmi",                  label: "Try BMI Calculator" },
+  "what-is-gst-in-india":                  { href: "/gst-calculator",       label: "Try GST Calculator" },
+  "understanding-home-loan-emi":           { href: "/home-loan",            label: "Try EMI Calculator" },
+  "how-to-improve-credit-score-india":     { href: "/home-loan",            label: "Check EMI Eligibility" },
+  "income-tax-for-salaried-employees-india":{ href: "/income-tax-calculator", label: "Try Income Tax Calculator" },
+  "ppf-vs-elss-vs-nps-tax-saving":         { href: "/ppf-calculator",       label: "Try PPF Calculator" },
 }
 
 export default function BlogPage() {
@@ -37,7 +40,7 @@ export default function BlogPage() {
         </div>
         <h1 className="text-4xl font-bold tracking-tight mb-4">Finance & Calculator Guides</h1>
         <p className="text-lg text-muted-foreground">
-          Practical guides on EMI, investments, taxes, health, and smart money decisions — written forn readers.
+          Practical guides on EMI, investments, taxes, health, and smart money decisions — written for real readers.
         </p>
       </div>
 
