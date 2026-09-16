@@ -42,7 +42,7 @@ export function EmiCalculatorClient({
           label="Loan Amount"
           value={principal}
           min={10000}
-          max={5000000}
+          max={10000000}
           step={10000}
           onChange={setPrincipal}
           formatValue={(val) => formatCurrency(val, currency)}

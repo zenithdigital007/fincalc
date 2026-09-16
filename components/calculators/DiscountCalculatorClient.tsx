@@ -3,6 +3,8 @@ import { useState } from "react"
 import { useCurrency } from "@/components/providers/currency-provider"
 import { formatCurrency } from "@/lib/utils"
 
+import { SliderInput } from "@/components/shared/SliderInput"
+
 export function DiscountCalculatorClient() {
   const [originalPrice, setOriginalPrice] = useState(100)
   const [discountPct, setDiscountPct] = useState(20)
@@ -27,26 +29,15 @@ export function DiscountCalculatorClient() {
             className="w-full p-3 rounded-xl border border-border bg-background text-foreground text-xl font-bold focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
         </div>
-        <div>
-          <div className="flex justify-between mb-2">
-            <label className="text-sm font-medium text-muted-foreground">Discount</label>
-            <span className="text-sm font-bold text-primary px-3 py-1 bg-primary/10 rounded-lg border border-primary/20">
-              {discountPct}% OFF
-            </span>
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={100}
-            step={1}
-            value={discountPct}
-            onChange={(e) => setDiscountPct(Number(e.target.value))}
-            className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-primary"
-          />
-          <div className="flex justify-between text-xs text-muted-foreground mt-1">
-            <span>0%</span><span>100%</span>
-          </div>
-        </div>
+        <SliderInput
+          label="Discount"
+          value={discountPct}
+          min={0}
+          max={100}
+          step={1}
+          onChange={setDiscountPct}
+          suffix="% OFF"
+        />
         {/* Quick discount presets */}
         <div className="flex gap-2 flex-wrap">
           {[5, 10, 15, 20, 25, 30, 40, 50, 70].map((d) => (

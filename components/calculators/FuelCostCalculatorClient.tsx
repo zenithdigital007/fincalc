@@ -3,6 +3,8 @@ import { useState } from "react"
 import { useCurrency } from "@/components/providers/currency-provider"
 import { formatCurrency } from "@/lib/utils"
 
+import { SliderInput } from "@/components/shared/SliderInput"
+
 export function FuelCostCalculatorClient() {
   const [distance, setDistance] = useState(300)
   const [mileage, setMileage] = useState(12)
@@ -19,32 +21,33 @@ export function FuelCostCalculatorClient() {
         <h2 className="text-2xl font-bold">Fuel Cost Calculator</h2>
         <p className="text-sm text-muted-foreground -mt-4">Estimate petrol/diesel cost for your trip</p>
 
-        {[
-          { label: 'Trip Distance (km)', value: distance, set: setDistance, min: 1, max: 3000, step: 10, unit: 'km' },
-          { label: 'Vehicle Mileage (km/L)', value: mileage, set: setMileage, min: 5, max: 60, step: 0.5, unit: 'km/L' },
-          { label: 'Fuel Price (per litre)', value: fuelPrice, set: setFuelPrice, min: 0.1, max: 10, step: 0.1, unit: '/L' },
-        ].map(({ label, value, set, min, max, step, unit }) => (
-          <div key={label} className="space-y-2">
-            <div className="flex justify-between items-center">
-              <label className="text-sm font-medium text-muted-foreground">{label}</label>
-              <span className="text-sm font-bold text-primary px-3 py-1 bg-primary/10 rounded-lg border border-primary/20">
-                {value} {unit}
-              </span>
-            </div>
-            <input
-              type="range"
-              min={min}
-              max={max}
-              step={step}
-              value={value}
-              onChange={(e) => set(Number(e.target.value))}
-              className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-primary"
-            />
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>{min} {unit}</span><span>{max} {unit}</span>
-            </div>
-          </div>
-        ))}
+        <SliderInput
+          label="Trip Distance (km)"
+          value={distance}
+          min={1}
+          max={3000}
+          step={10}
+          onChange={setDistance}
+          suffix="km"
+        />
+        <SliderInput
+          label="Vehicle Mileage (km/L)"
+          value={mileage}
+          min={5}
+          max={60}
+          step={0.5}
+          onChange={setMileage}
+          suffix="km/L"
+        />
+        <SliderInput
+          label="Fuel Price (per litre)"
+          value={fuelPrice}
+          min={0.1}
+          max={10}
+          step={0.1}
+          onChange={setFuelPrice}
+          formatValue={(v) => `${fmt(v)}/L`}
+        />
       </div>
 
       <div className="space-y-6 bg-card text-card-foreground p-8 rounded-2xl border shadow-sm relative overflow-hidden">
