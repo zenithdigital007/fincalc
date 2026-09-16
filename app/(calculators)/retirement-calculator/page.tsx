@@ -7,46 +7,59 @@ const SITE_URL = 'https://loancalculator-nu.vercel.app'
 const PAGE_URL = `${SITE_URL}/retirement-calculator`
 
 export const metadata: Metadata = {
-  title: "Retirement Calculator — How Much Do You Need to Retire?",
+  title: "Retirement Calculator — Calculate Target Retirement Corpus & Monthly Savings",
   description:
-    "Plan your retirement with India's most comprehensive retirement calculator. Enter your age, savings, monthly contributions, and expected returns to see your projected corpus vs required corpus. Free retirement planner.",
+    "Free online Retirement Calculator. Calculate inflation-adjusted retirement corpus, required monthly savings, and post-retirement expenses to achieve financial independence (FIRE).",
   keywords: [
-    "retirement calculator India", "retirement planning calculator", "retirement corpus calculator",
-    "how much to save for retirement India", "retirement fund calculator", "early retirement calculator India",
-    "retirement planner online free",
+    "retirement calculator", "pension corpus calculator", "FIRE calculator India",
+    "calculate retirement money", "inflation adjusted retirement calculator",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Retirement Calculator — How Much Do You Need to Retire in India?",
-    description: "Calculate your retirement corpus and see if you're on track. Accounts for inflation, returns, and monthly expenses.",
-    url: PAGE_URL, type: "website",
-    images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Retirement Calculator India" }],
+    title: "Retirement Calculator — Calculate Target Corpus Online",
+    description: "Calculate how much money you need to retire comfortably with inflation-adjusted expenses. Free retirement calculator.",
+    url: PAGE_URL,
+    type: "website",
+    images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Retirement Calculator" }],
   },
 }
 
 const jsonLd = [
   {
-    "@context": "https://schema.org", "@type": "WebApplication",
-    name: "Retirement Calculator India", url: PAGE_URL,
-    description: "Free retirement planner for India. Calculate projected corpus vs required corpus with inflation adjustment.",
-    applicationCategory: "FinanceApplication", operatingSystem: "All",
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Retirement Calculator",
+    url: PAGE_URL,
+    description: "Free online Retirement Calculator with inflation and life expectancy modeling.",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "All",
     offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
   },
   {
-    "@context": "https://schema.org", "@type": "FAQPage",
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: [
       {
-        "@type": "Question", name: "How much money do I need to retire in India?",
-        acceptedAnswer: { "@type": "Answer", text: "A common rule is the '25x rule': multiply your annual expenses at retirement by 25. For example, if you need ₹60,000/month (₹7.2L/year), you need ₹1.8 crore. This assumes a 4% annual withdrawal rate (the 4% rule). With Indian inflation of 6%, the figure will be higher in today's money terms." },
+        "@type": "Question",
+        name: "How much corpus do I need to retire comfortably?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A standard benchmark rule (e.g. the 25x-30x rule) suggests saving at least 25 to 30 times your estimated annual expenses at retirement, adjusted for an average 6% inflation rate.",
+        },
       },
       {
-        "@type": "Question", name: "At what age should I start saving for retirement?",
-        acceptedAnswer: { "@type": "Answer", text: "The earlier, the better. Starting at 25 instead of 35 can more than double your retirement corpus thanks to compounding. Even small monthly contributions of ₹5,000-10,000 starting at 25 can build a significant corpus by 60." },
+        "@type": "Question",
+        name: "What is the 4% withdrawal rule?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The 4% rule states that you can withdraw 4% of your total retirement portfolio in the first year of retirement, and adjust subsequent withdrawals for inflation, with high probability that the funds will last 30+ years.",
+        },
       },
     ],
   },
   {
-    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Retirement Calculator", item: PAGE_URL },
@@ -61,11 +74,45 @@ export default function RetirementPage() {
       <div className="max-w-4xl mx-auto mb-10 text-center">
         <h1 className="text-4xl font-bold tracking-tight mb-4">Retirement Calculator</h1>
         <p className="text-lg text-muted-foreground">
-          Find out if your savings are on track. See your projected retirement corpus vs what you actually need, adjusted for inflation.
+          Calculate your target retirement corpus, inflation-adjusted expenses, and required monthly savings.
         </p>
       </div>
+
       <RetirementCalculatorClient />
-      <AdBanner adSlot="5018000001" adFormat="horizontal" label="Advertisement" className="mt-10" />
+      <AdBanner adSlot="5013000001" adFormat="horizontal" label="Advertisement" className="mt-10" />
+
+      {/* Rich Educational Content */}
+      <section className="max-w-4xl mx-auto mt-16 prose prose-neutral dark:prose-invert max-w-none">
+        <h2 className="text-2xl font-bold mb-6">Key Steps in Retirement Financial Planning</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {[
+            { title: "1. Account for Inflation", desc: "A monthly expense of ₹50,000 today will equal ₹1.60 Lakh per month in 20 years at a modest 6% annual inflation rate." },
+            { title: "2. Define Life Expectancy", desc: "With healthcare advancements, plan for a post-retirement horizon of at least 25–30 years (living up to age 85–90)." },
+            { title: "3. Diversify Asset Allocation", desc: "Shift gradually from equity-heavy accumulation portfolios (ages 25–50) to balanced hybrid & debt assets as retirement nears." },
+            { title: "4. Build an Emergency & Health Buffer", desc: "Maintain dedicated comprehensive health insurance separate from retirement corpus to safeguard against medical contingencies." },
+          ].map(({ title, desc }) => (
+            <div key={title} className="p-5 bg-card border border-border rounded-xl">
+              <h3 className="font-semibold mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div className="space-y-6 mb-8">
+          {[
+            {
+              q: "What is the FIRE movement?",
+              a: "FIRE stands for 'Financial Independence, Retire Early'. It is a lifestyle and investing movement centered around aggressive savings (50%+ of income) in early career years to achieve early retirement in one's 30s or 40s.",
+            },
+          ].map(({ q, a }) => (
+            <div key={q} className="border-b border-border pb-6 last:border-0">
+              <h3 className="font-semibold mb-2 text-base">{q}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
